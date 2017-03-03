@@ -1,0 +1,11 @@
+var config = require('../config');
+var backend = require('../backend');
+var http = require('http');
+
+// Crear servidor http
+var server = http.createServer(backend);
+
+server.listen(config.port, function (err){  
+	if (err) return console.log(err);
+	console.log('Servidor escuchando en el puerto '+config.port);
+}); 

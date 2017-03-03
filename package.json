@@ -1,0 +1,39 @@
+{
+  "name": "spa-admin",
+  "version": "1.0.0",
+  "description": "Single Page Application Admin Management",
+  "scripts": {
+    "postinstall": "npm run build-prod",
+    "build-prod": "grunt build-prod",
+    "build": "grunt build-dev",
+    "dev": "grunt dev",
+    "start": "node ./bin/www"
+  },
+  "engines": {
+    "node": "4.4.x",
+    "npm": "2.15.x"
+  },
+  "author": "Rodolfo Valguarnera <rod7val@gmail.com> (https://github.com/rody7val/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rody7val/spa-admin.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "grunt": ">=0.4.5 <1.0.0",
+    "grunt-bower-task": "^0.4.0",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-express-server": "^0.5.3",
+    "grunt-html2js": "^0.3.6",
+    "jade": "^1.11.0",
+    "morgan": "^1.7.0",
+    "serve-favicon": "^2.3.2"
+  }
+}

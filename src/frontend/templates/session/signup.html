@@ -1,0 +1,110 @@
+<!-- Navegación, fecha y hora-->
+<div id='subnav'>
+	<ol class='breadcrumb'>
+		<div class='container'>
+			<li class='breadcrumb-item active'>Registrarse</li>
+			<div id='time' class='right date'></div>
+		</div>
+	</ol>
+</div>
+
+<!-- Plantilla -->
+<section id='template-content' class='{{loading ? "load" : ""}}'>
+
+	<!-- Imagen de carga -->
+	<section id='img-load-content' class='{{loading ? "view" : ""}}'>
+		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
+	</section>
+	
+	<!-- Titulo -->
+	<div class='head-title'>
+		<h1 class='center light'>Registrarse</h1>
+	</div>
+
+	<!-- Informe al Super-Administrador -->
+	<div class='container' ng-if='usersCount == 0'>
+		<div class='alert alert-info'>
+			<p><h5>Primer usuario del sistema!</h5>Por defecto será un <code>Super-Administrador</code> con un estado <code>Activo</code>. Los nuevos usuarios que se registren quedarán pendientes de moderación bajo su cargo.</p>
+		</div>
+		<br>
+	</div>
+
+	<!-- Formulario -->
+	<div class='container body-form auth-form'>
+		<form ng-submit="signup.signup()" method="post">
+				
+				<!-- Errors -->
+				<div ng-show='feedback_err' class='alert alert-danger'>
+					{{feedback_err}}
+				</div>
+
+				<!-- Nombre -->
+				<div class='form-group {{feedback_name ? "has-danger" : ""}}'>
+					<label 
+						class='form-control-label'
+						for='name'>
+							<b>Nombre Completo</b></label>
+		    		<input
+		    			id='name'
+		    			type="name"
+		    			ng-model="signup.name"
+		    			class='form-control' />
+		    		<div 
+		    			id="name-feedback"
+		    			class='form-control-feedback'>{{feedback_name}}</div>
+		    	</div>
+
+				<!-- Email -->
+				<div class='form-group {{feedback_email ? "has-danger" : ""}}'>
+					<label 
+						class='form-control-label'
+						for='email'>
+							<b>Email</b></label>
+		    		<input
+		    			id='email'
+		    			type="email"
+		    			ng-model="signup.email"
+		    			class='form-control' />
+		    		<div 
+		    			id="email-feedback"
+		    			class='form-control-feedback'>{{feedback_email}}</div>
+				</div>
+	
+				<!-- Contraseña -->
+				<div class='form-group {{feedback_password ? "has-danger" : ""}}'>
+		    	<label 
+		    		class='form-control-label'
+		    		for='password'>
+		    			<b>Contraseña</b></label>
+		    	<input
+		    		id='password'
+		    		type="password"
+		    		ng-model="signup.password"
+		    		class='form-control' />
+		    	<div 
+		    		id="password-feedback"
+		    		class='form-control-feedback'>{{feedback_password}}</div>
+				</div>
+
+				<!-- SuperAdmin -->
+				<div class='none'>
+					<input
+		    			id='super-admin'
+		    			type="checkbox"
+		    			ng-model="signup.admin"
+		    			class='form-control'/>
+		    		<input
+		    			id='active'
+		    			type="checkbox"
+		    			ng-model="signup.active"
+		    			class='form-control' />
+
+		    	</div>
+	
+				<!-- Boton de acceso -->
+		    <button type="submit" class='btn btn-outline-primary {{loading ? "disabled" : ""}}'>Registrarse</button>
+	
+		</form>
+	</div>
+
+</section>

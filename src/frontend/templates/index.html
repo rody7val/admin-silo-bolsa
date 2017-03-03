@@ -1,0 +1,72 @@
+<!-- Navegación, fecha y hora-->
+<div id='subnav'>
+	<ol class='breadcrumb'>
+		<div class='container'>
+			<li class='breadcrumb-item'>Admin</li>
+			<div id='time' class='right date'></div>
+		</div>
+	</ol>
+</div>
+
+<!-- Plantilla -->
+<section id='template-content' class='{{loading ? "load" : ""}}'>
+
+	<!-- Imagen de carga -->
+	<section id='img-load-content' class='{{loading ? "view" : ""}}'>
+		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
+	</section>
+
+	<div class='head-title'>
+		<div class='notifications container center'>
+			<!-- Errors -->
+			<div ng-show='feedback_err' class='alert alert-danger'>
+				{{feedback_err}}
+				<script>(function(e){function animation(element){setTimeout(function(){element.animate({height:'0px'},'slow');e.empty()},5000)}animation(e)})($('.notifications'))</script>
+			</div>
+			<!-- Success -->
+			<div ng-show='feedback_success' class='alert alert-success'>
+				{{feedback_success}}
+				<script>(function(e){function animation(element){setTimeout(function(){element.animate({height:'0px'},'slow');e.empty()},5000)}animation(e)})($('.notifications'))</script>
+			</div>
+		</div>
+
+		<!-- Titulo -->
+		<h1 class='center light'>Administración</h1>
+	</div>
+
+	<div class='container body-form'>
+
+		<nav>
+			<!-- Navegación de administración -->
+			<ul class='nav nav-tabs'>
+				<li class='nav-item'>
+					<a 
+						class='nav-link active'
+						data-toggle='tab'
+						ng-click='currentPage = 1'
+						href='#user'>Usuarios</a>
+				</li>
+			</ul>
+			<br>
+
+			<!-- Paneles-->
+			<div class='tab-content'>
+				<!-- Usuarios -->
+				<div class='tab-pane fade {{currentPage == 1 ? "active in" : ""}}' id='user'>
+					<div class='list-group'>
+						<a 
+							href="/users"
+							class="list-group-item list-group-item-action flex-column align-items-start">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class='mb-1'>Listado de usuarios</h5>
+							</div>
+							<p class='mb-1'>Muestra un listado de todos los Usuarios.</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+	</div>
+
+</section>
