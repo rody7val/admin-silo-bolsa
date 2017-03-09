@@ -1,6 +1,6 @@
 {
   "name": "spa-admin",
-  "description": "Single Page Application Admin Management",
+  "description": "Single Page Application Management",
   "main": "./bin/www",
   "authors": [
     "Rodolfo Valguarnera <rod7val@gmail.com> (https://github.com/rody7val/)"

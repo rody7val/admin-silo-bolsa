@@ -15,7 +15,7 @@ define(['./module'], function (controllers) {
 		$scope.feedback_success = '';
 
 		this.confirmToken = function(){
-			// Url API Auth.reset(User.id)
+			// Url API Auth.reset(this.id)
 			$http.get('http://localhost:3000/auth' + $location.path())
 			.then(function(res){
 				var api = res.data;
@@ -45,7 +45,7 @@ define(['./module'], function (controllers) {
 			$scope.loading = true;
 
 			if (vm.password == vm.password_bis) {
-				// Url API Auth.reset(User.id, User.new_password)
+				// Url API Auth.reset(this.id, this.new_password)
 				$http.post('http://localhost:3000/auth' + $location.path(), {
 					password: vm.password,
 					host: $location.protocol() + '://' + $location.host(),

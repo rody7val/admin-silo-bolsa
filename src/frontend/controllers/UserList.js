@@ -40,7 +40,7 @@ define(['./module'], function (controllers) {
 		$scope.block = function(id){
 			$scope.loading = true;
 
-			// Url API User.block(User.id)
+			// Url API User.block(this.id)
 			$http.get('http://localhost:3000/users/'+id+'/block')
 			.then(function(res){
 				$scope.loading = false;
@@ -70,7 +70,7 @@ define(['./module'], function (controllers) {
 			console.log(id);
 			$scope.loading = true;
 
-			// Url API User.delete(User.id)
+			// Url API User.delete(this.id)
 			$http.get('http://localhost:3000/users/'+id+'/delete')
 			.then(function(res){
 				$scope.loading = false;
@@ -100,7 +100,7 @@ define(['./module'], function (controllers) {
 			console.log(id);
 			$scope.loading = true;
 
-			// Url API User.active(User.id)
+			// Url API User.active(this.id)
 			$http.get('http://localhost:3000/users/'+id+'/active')
 			.then(function(res){
 				$scope.loading = false;

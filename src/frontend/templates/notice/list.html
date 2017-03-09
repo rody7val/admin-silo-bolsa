@@ -1,0 +1,71 @@
+<!-- Navegación, fecha y hora-->
+<div id='subnav'>
+	<ol class='breadcrumb'>
+		<div class='container'>
+			<li class='breadcrumb-item'>
+				<a class='breadcrumb-link' href="/">Admin</a>
+			</li>
+			<li class='breadcrumb-item active'>Listado de noticias</li>
+			<div id='time' class='right date'></div>
+		</div>
+	</ol>
+</div>
+
+<!-- Plantilla -->
+<section id='template-content' class='{{loading ? "load" : ""}}'>
+
+	<!-- Imagen de carga -->
+	<section id='img-load-content' class='{{loading ? "view" : ""}}'>
+		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
+	</section>
+	
+	<!-- Titulo -->
+	<div class='head-title'>
+		<h1 class='center light'>Listado de noticias</h1>
+	</div>
+	
+
+	<!-- Listado de Noticias -->
+	<div class='container body-form'>
+
+		<!-- Errors -->
+		<div ng-show='feedback_err' class='alert alert-danger'>
+			{{feedback_err}}
+		</div>
+
+		<table class='table table-hover'>
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Autor</th>
+					<th>Titulo</th>
+					<th ng-if='userLoged.active'>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-if='notices.length' ng-repeat='notice in notices'>
+					<td class='date'>{{setDate(notice.created)}}</td>
+					<td class='date'>{{notice.autor}}</td>
+					<td>{{notice.title}}</td>
+					<td>
+						<a  class='btn btn-outline-info btn-sm'
+							href="/notice/{{notice._id}}">
+							Ver</a>
+						<form ng-if='userLoged.active' ng-submit="this.delete(notice._id)" method='get'>
+							<input
+								class='btn btn-outline-danger btn-sm'
+								type='submit'
+								onClick='return confirm("BORRAR NOTICIA?")'
+								value='Borrar'>
+						</form>
+					</td>
+				</tr>
+				<tr ng-if='!notices.length'>
+					<td colspan='{{!userLoged.active ? 3 : 4}}' class='center'>No hay noticias ...</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+</section>

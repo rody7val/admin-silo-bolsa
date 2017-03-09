@@ -1,7 +1,7 @@
 {
   "name": "spa-admin",
   "version": "1.0.0",
-  "description": "Single Page Application Admin Management",
+  "description": "Single Page Application Management",
   "scripts": {
     "postinstall": "npm run build-prod",
     "build-prod": "grunt build-prod",

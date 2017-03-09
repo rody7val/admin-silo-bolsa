@@ -1,6 +1,6 @@
 # spa-admin
 
-Single Page Application Admin Management
+Single Page Application Management
 
 ## Requisitos
 
