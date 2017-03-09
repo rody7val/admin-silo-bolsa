@@ -1,6 +1,6 @@
 # spa-admin
 
-Single Page Application Management
+Aplicación de administración de una sola página (Single Page Application Management)
 
 ## Requisitos
 
@@ -24,4 +24,4 @@ npm install
 npm run build
 npm run dev
 ```
-Ir a [http://localhost:3000](http://localhost:3000) :tada:
+Ir a [http://localhost:3000](http://localhost:8000) :tada:
