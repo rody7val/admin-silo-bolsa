@@ -1,7 +1,7 @@
 {
-  "name": "spa-admin",
+  "name": "admin-silo-bolsa",
   "version": "1.0.0",
-  "description": "Single Page Application Management",
+  "description": "Administración del proyecto de secado de granos de Silo Bolsas",
   "scripts": {
     "postinstall": "npm run build-prod",
     "build-prod": "grunt build-prod",
@@ -16,7 +16,7 @@
   "author": "Rodolfo Valguarnera <rod7val@gmail.com> (https://github.com/rody7val/)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rody7val/spa-admin.git"
+    "url": "https://github.com/rody7val/admin-silo-bolsa.git"
   },
   "license": "MIT",
   "dependencies": {

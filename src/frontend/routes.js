@@ -51,25 +51,6 @@ define(['./app'], function (app) {
 			templateUrl: null,
 			controller: "Logout"
 		})
-		//notice
-		.state("notice", {
-			url: "/notice",
-			templateUrl: "frontend/templates/notice/new.html",
-			controller: "NoticeNew",
-			controllerAs: "notice"
-		})
-		.state("notices", {
-			url: "/notices",
-			templateUrl: "frontend/templates/notice/list.html",
-			controller: "NoticeList",
-			controllerAs: "notices"
-		})
-		.state("notice_show", {
-			url: "/notice/:id",
-			templateUrl: "frontend/templates/notice/show.html",
-			controller: "NoticeShow",
-			controllerAs: "notice"
-		})
 		//user
 		.state('users', {
 			url: '/users',
