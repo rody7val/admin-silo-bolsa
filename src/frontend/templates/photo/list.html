@@ -1,0 +1,57 @@
+<!-- Navegación, fecha y hora-->
+<div id='subnav'>
+	<ol class='breadcrumb'>
+		<div class='container'>
+			<li class='breadcrumb-item'>
+				<a class='breadcrumb-link' href="/">Admin</a>
+			</li>
+			<li class='breadcrumb-item active'>Listado de lecturas de fotorresistores</li>
+			<div id='time' class='right date'></div>
+		</div>
+	</ol>
+</div>
+
+<!-- Plantilla -->
+<section id='template-content' class='{{loading ? "load" : ""}}'>
+
+	<!-- Imagen de carga -->
+	<section id='img-load-content' class='{{loading ? "view" : ""}}'>
+		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
+	</section>
+	
+	<!-- Titulo -->
+	<div class='head-title'>
+		<h1 class='center light'>Listado de lecturas de fotorresistores</h1>
+	</div>
+
+	<!-- Listado de Lecturas de Fotorresistores -->
+	<div class='container body-form'>
+
+		<!-- Errors -->
+		<div ng-show='feedback_err' class='alert alert-danger'>
+			{{feedback_err}}
+		</div>
+		<table class='table table-hover'>
+			<thead>
+				<tr>
+					<th>Placa</th>
+					<th>Valor</th>
+					<th>Fecha y Hora</th>
+					<!-- <th ng-if='userLoged.active'>Acciones</th> -->
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-if='photos.length' ng-repeat='photo in photos'>
+					<td>{{photo.board}}</td>
+					<td>{{photo.luz}}</td>
+					<td class='date'>{{setDate(photo.created)}}</td>
+				</tr>
+				<tr ng-if='!photos.length'>
+					<td colspan='3' class='center'>No hay valores aun ...</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="/" class='btn btn-link'>Volver</a>
+	</div>
+
+</section>

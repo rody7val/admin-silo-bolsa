@@ -1,6 +1,6 @@
-# spa-admin
+# admin-silo-bolsa
 
-Aplicación de administración de una sola página (Single Page Application Management)
+Administración del proyecto Secado de granos de Silo Bolsas
 
 ## Requisitos
 

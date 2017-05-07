@@ -5,6 +5,7 @@ define([
     './Login',
     './Logout',
     './Main',
+    './PhotoList',
     './Reset',
     './Signup',
     './UserList',

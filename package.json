@@ -1,7 +1,7 @@
 {
   "name": "admin-silo-bolsa",
   "version": "1.0.0",
-  "description": "Administración del proyecto de secado de granos de Silo Bolsas",
+  "description": "Administración del proyecto Secado de granos de Silo Bolsas",
   "scripts": {
     "postinstall": "npm run build-prod",
     "build-prod": "grunt build-prod",

@@ -58,6 +58,13 @@ define(['./app'], function (app) {
 			controller: 'UserList',
 			controllerAs: 'users'
 		})
+		//photoresistor
+		.state('photos', {
+			url: '/photoresistors',
+			templateUrl: 'frontend/templates/photo/list.html',
+			controller: 'PhotoList',
+			controllerAs: 'photos'
+		})
 		//default
 		.state("otherwise", {
 			url: "/*path",

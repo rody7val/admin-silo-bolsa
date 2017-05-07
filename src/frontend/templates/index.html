@@ -46,6 +46,13 @@
 						ng-click='currentPage = 1'
 						href='#user'>Usuarios</a>
 				</li>
+				<li class='nav-item'>
+					<a 
+						class='nav-link'
+						data-toggle='tab'
+						ng-click='currentPage = 2'
+						href='#sensor'>Sensores</a>
+				</li>
 			</ul>
 			<br>
 
@@ -59,6 +66,25 @@
 							class="list-group-item list-group-item-action flex-column align-items-start">
 							<div class="d-flex w-100 justify-content-between">
 								<h5 class='mb-1'>Listado de usuarios</h5>
+							</div>
+						</a>
+					</div>
+				</div>
+				<!-- Sensores -->
+				<div class='tab-pane fade {{currentPage == 2 ? "active in" : ""}}' id='sensor'>
+					<div class='list-group'>
+						<a 
+							href="/photoresistors"
+							class="list-group-item list-group-item-action flex-column align-items-start">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class='mb-1'>Mostrar lecturas de fotorresistores</h5>
+							</div>
+						</a>
+						<a disabled
+							href="/photoresistor-export"
+							class="list-group-item list-group-item-action flex-column align-items-start">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class='mb-1'>Exportar datos de fotorresistores a excel</h5>
 							</div>
 						</a>
 					</div>
