@@ -1,21 +1,17 @@
-define(['./app'], function (app) {
+var routesApp = function ($authProvider, $stateProvider, $locationProvider) {
 
-	'use strict';
+	$authProvider.loginUrl = "http://localhost:3000/auth/login";
+	$authProvider.signupUrl = "http://localhost:3000/auth/signup";
+	$authProvider.tokenName = "token";
+	$authProvider.tokenPrefix = "myApp";
 
-	return app.config(['$authProvider', '$stateProvider', '$locationProvider', function ($authProvider, $stateProvider, $locationProvider) {
+	$locationProvider.html5Mode({
+		enabled: true,
+		requireBase: false
+	});
 
-		$authProvider.loginUrl = "http://localhost:3000/auth/login";
-		$authProvider.signupUrl = "http://localhost:3000/auth/signup";
-		$authProvider.tokenName = "token";
-		$authProvider.tokenPrefix = "cahc";
-
-		$locationProvider.html5Mode({
-			enabled: true,
-			requireBase: false
-		});
-
-		// Configuración de las rutas/estados
-		$stateProvider
+	// Configuración de las rutas/estados
+	$stateProvider
 		.state("home", {
 			url: "/",
 			templateUrl: "frontend/templates/index.html",
@@ -51,25 +47,6 @@ define(['./app'], function (app) {
 			templateUrl: null,
 			controller: "Logout"
 		})
-		//notice
-		.state("notice", {
-			url: "/notice",
-			templateUrl: "frontend/templates/notice/new.html",
-			controller: "NoticeNew",
-			controllerAs: "notice"
-		})
-		.state("notices", {
-			url: "/notices",
-			templateUrl: "frontend/templates/notice/list.html",
-			controller: "NoticeList",
-			controllerAs: "notices"
-		})
-		.state("notice_show", {
-			url: "/notice/:id",
-			templateUrl: "frontend/templates/notice/show.html",
-			controller: "NoticeShow",
-			controllerAs: "notice"
-		})
 		//user
 		.state('users', {
 			url: '/users',
@@ -82,7 +59,8 @@ define(['./app'], function (app) {
 			url: "/*path",
 			templateUrl: "frontend/templates/404.html"
 		});
+}
 
-	}]);
-
-});
+var App = angular
+			.module('App', ['satellizer', 'app.templates', 'ui.router'])
+			.config(routesApp);

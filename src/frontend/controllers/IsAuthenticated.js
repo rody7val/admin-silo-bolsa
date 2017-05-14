@@ -1,8 +1,5 @@
-define(['./module'], function (controllers) {
-	
-	'use strict';
-	
-	controllers.controller('IsAuthenticated', ['$scope', '$auth', '$location', function ($scope, $auth, $location){
+App
+	.controller('IsAuthenticated', function ($scope, $auth, $location){
 
 		$scope.isAuthenticated = function(){
 			return $auth.isAuthenticated();
@@ -13,6 +10,4 @@ define(['./module'], function (controllers) {
 			return $scope.userLoged.name.split(' ')[0];
 		}
 
-	}]);
-
-});
+	});

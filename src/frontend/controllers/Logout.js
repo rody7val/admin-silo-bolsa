@@ -1,18 +1,14 @@
-define(['./module'], function (controllers) {
-
-	'use strict';
-	
-	controllers.controller('Logout', ['$scope', '$auth', '$location', function ($scope, $auth, $location) {
+App
+	.controller('Logout', function ($scope, $auth, $location) {
 
 		if (!$auth.isAuthenticated())
 			return $location.path('/login');
 	
-		$auth.logout()
+		$auth
+		.logout()
 		.then(function() {
 			localStorage.removeItem('user')
 			$location.path('/login');
 		});
 
-	}]);
-
-});
+	});

@@ -44,13 +44,6 @@
 						class='nav-link active'
 						data-toggle='tab'
 						ng-click='currentPage = 1'
-						href='#notice'>Noticias</a>
-				</li>
-				<li class='nav-item'>
-					<a 
-						class='nav-link'
-						data-toggle='tab'
-						ng-click='currentPage = 2'
 						href='#user'>Usuarios</a>
 				</li>
 			</ul>
@@ -58,29 +51,8 @@
 
 			<!-- Paneles-->
 			<div class='tab-content'>
-				<!-- Noticias -->
-				<div class='tab-pane fade {{currentPage == 1 ? "active in" : ""}}' id='notice'>
-					<div class='list-group'>
-						<a 
-							href="/notice"
-							class="list-group-item list-group-item-action flex-column align-items-start">
-							<div class="d-flex w-100 justify-content-between">
-								<h5 class='mb-1'>Crear noticia</h5>
-							</div>
-							<p class='mb-1'>Muestra formlario para Crear Nueva Noticia.</p>
-						</a>
-						<a 
-							href="/notices"
-							class="list-group-item list-group-item-action flex-column align-items-start">
-							<div class="d-flex w-100 justify-content-between">
-								<h5 class='mb-1'>Listado de noticias</h5>
-							</div>
-							<p class='mb-1'>Muestra listado de todas las Noticias.</p>
-						</a>
-					</div>
-				</div>
 				<!-- Usuarios -->
-				<div class='tab-pane fade {{currentPage == 2 ? "active in" : ""}}' id='user'>
+				<div class='tab-pane fade {{currentPage == 1 ? "active in" : ""}}' id='user'>
 					<div class='list-group'>
 						<a 
 							href="/users"
@@ -88,7 +60,6 @@
 							<div class="d-flex w-100 justify-content-between">
 								<h5 class='mb-1'>Listado de usuarios</h5>
 							</div>
-							<p class='mb-1'>Muestra un listado de todos los Usuarios.</p>
 						</a>
 					</div>
 				</div>

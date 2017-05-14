@@ -1,32 +1,27 @@
-define(['./module'], function (controllers) {
+App
+	.controller('Main', function ($scope, $http, User) {
 
-	'use strict';
+		function feedback_reset() {
+			$scope.loading = false;
+			$scope.errConect = false;
+			$scope.usersCount = 0;
+		}
 
-	controllers.controller('Main', ['$scope', '$http', function ($scope, $http) {
+		feedback_reset();
 
-		
-		$scope.errConect = false;
-		$scope.usersCount = 0;
+		this.getUserCount = function () {
+			$scope.loading = true;	//load
 
-		this.getUserCount = function() {
-			// Url API User.count()
-			$http.get('http://localhost:3000/users/count')
-			.then(function(res){
-				var api = res.data;
-				return $scope.usersCount = api.count;
-			})
-			.catch(function(res){
-				if (!res.data){
-					return $scope.errConect = true;
+			User
+			.count()
+			.then(function (api) {
+				feedback_reset();	//reset loads
+				if (api == null) {
+					$scope.errConect = true;
 				}
-
-				var api = res.data;
 				return $scope.usersCount = api.count;
 			});
-		};
+		}
 
 		this.getUserCount();
-
-	}]);
-
-});
+	});

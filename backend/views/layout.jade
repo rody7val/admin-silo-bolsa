@@ -1,20 +1,27 @@
 doctype html
-html(lang='es')
+html(lang='es', ng-app='App')
 	head
 		base(href='/')
 		meta(charset='utf-8')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		title Administración
 		block meta
-		script(src='/js/lib/jquery/jquery.js', type="text/javascript")
-		script(src='/js/lib/tether/tether.js', type="text/javascript")
-		script(src='/js/lib/bootstrap/bootstrap.js', type="text/javascript")
-		script(src='/js/lib/moment/moment.js', type="text/javascript")
-		script(src='/js/app/moment-with-locales.js', type="text/javascript")
-		script(src='/js/app/time.js', type="text/javascript")
+		//- Bootstrap
+		script(type="text/javascript", src='/js/lib/jquery/jquery.js')
+		script(type="text/javascript", src='/js/lib/tether/tether.js')
+		script(type="text/javascript", src='/js/lib/bootstrap/bootstrap.js')
+		//- Formato de Fechas
+		script(type="text/javascript", src='/js/lib/moment/moment.js')
+		script(type="text/javascript", src='/js/app/moment-with-locales.js')
+		script(type="text/javascript", src='/js/app/time.js')
+		//- Angular
+		script(type="text/javascript", src='/js/lib/angular/angular.js')
+		script(type="text/javascript", src='/js/lib/angular-ui-router/angular-ui-router.js')
+		script(type="text/javascript", src='/js/lib/satellizer/satellizer.js')
+		//- script(type="text/javascript", src='/js/lib/angular-imgur-upload/angular-imgur-upload.min.js')
 		block js
-		link(href='/css/bootstrap.min.css', rel="stylesheet", type="text/css")
-		link(href='/css/style.css', rel="stylesheet", type="text/css")
+		link(rel="stylesheet", type="text/css", href='/css/bootstrap.min.css')
+		link(rel="stylesheet", type="text/css", href='/css/style.css')
 		block css
 	body(ng-controller='Main')
 		//- Menu

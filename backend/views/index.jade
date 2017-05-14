@@ -2,6 +2,22 @@ extends ./layout.jade
 
 block content
 	section(ui-view)
-
 block js_footer
-	script(type="text/javascript", src='/js/lib/requirejs/require.js', data-main='/js/app/main.js')
+	//- Angular MVC
+	//- ** Vistas:
+	script(type="text/javascript", src='/js/app/templates.js')
+	//- ** Rutas:
+	script(type="text/javascript", src='/js/app/routes.js')
+	//- ** Modelos:
+	script(type="text/javascript", src='/js/app/models/users.js')
+	script(type="text/javascript", src='/js/app/models/session.js')
+	//- ** Controladores:
+	script(type="text/javascript", src='/js/app/controllers/Forgot.js')
+	script(type="text/javascript", src='/js/app/controllers/Home.js')
+	script(type="text/javascript", src='/js/app/controllers/IsAuthenticated.js')
+	script(type="text/javascript", src='/js/app/controllers/Login.js')
+	script(type="text/javascript", src='/js/app/controllers/Logout.js')
+	script(type="text/javascript", src='/js/app/controllers/Main.js')
+	script(type="text/javascript", src='/js/app/controllers/Reset.js')
+	script(type="text/javascript", src='/js/app/controllers/Signup.js')
+	script(type="text/javascript", src='/js/app/controllers/UserList.js')

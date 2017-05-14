@@ -1,8 +1,5 @@
-define(['./module'], function (controllers) {
-	
-	'use strict';
-	
-	controllers.controller('Home', ['$scope', '$auth', '$location', function ($scope, $auth, $location) {
+App
+	.controller('Home', function ($scope, $auth, $location) {
 
 		if (!$auth.isAuthenticated())
 			return $location.path("/login");
@@ -16,6 +13,4 @@ define(['./module'], function (controllers) {
 		$scope.currentPage = 1;
 		$scope.userLoged = JSON.parse(localStorage.getItem('user'));
 
-	}]);
-	
-});
+	});

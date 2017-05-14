@@ -1,67 +1,53 @@
-define(['./module'], function (controllers) {
+App
+	.controller('Signup', function ($scope, $auth, $location, $window, Session) {
 
-	'use strict';
+		if ($auth.isAuthenticated()) { return $location.path("/") };
 
-	controllers.controller('Signup', ['$scope', '$auth', '$location', '$window', function ($scope, $auth, $location, $window) {
-
-		if ($auth.isAuthenticated())
-			return $location.path("/");
+		function feedback_reset() {
+			$scope.loading = false;
+			$scope.feedback_name = '';
+			$scope.feedback_email = '';
+			$scope.feedback_password = '';
+			$scope.feedback_err = '';
+		}
 
 		var vm = this;
-		
-		$scope.loading = false;
-		$scope.feedback_name = '';
-		$scope.feedback_email = '';
-		$scope.feedback_password = '';
-		$scope.feedback_err = '';
+		feedback_reset();
 
 		this.signup = function() {
-			$scope.loading = true;
-			vm.admin = $scope.usersCount == 0 ? true : false;
-			vm.active = $scope.usersCount == 0 ? true : false;
+			$scope.loading = true;	//load
 
-			$auth.signup({
+			Session
+			.signUp({
 				name: vm.name,
 				email: vm.email,
 				password: vm.password,
-				admin: vm.admin,
-				active: vm.active
+				superAdmin: $scope.usersCount == 0 ? true : false,
+				admin: $scope.usersCount == 0 ? true : false,
+				active: $scope.usersCount == 0 ? true : false
 			})
-			.then(function (res) {
-				var api = res.data;
-
-				if (res.status === 200) {
-					$auth.login({ name: vm.name, email: vm.email, password: vm.password })
-					.then(function(){
-						$scope.loading = false;
-						localStorage.setItem('user', JSON.stringify(api.user));
-						// Recargar el sitio para que no pueda ser duplicado el registro de super-administrador
-						$window.location.reload();
-						return $location.path("/");
-					});
+			.then(function (api) {
+				feedback_reset();	//load reset
+				if (api.name) {
+					return $scope.feedback_name = api.err;
 				}
-			})
-			.catch(function(res) {
-				$scope.loading = false;
-				$scope.feedback_name = '';
-				$scope.feedback_email = '';
-				$scope.feedback_password = '';
-				$scope.feedback_err = '';
-				var api = res.data;
-
-				if (res.status === 500 && api.err && api.err.name)
-					return $scope.feedback_name = api.err.name.message;
-
-				if (res.status === 500 && api.err && api.err.email)
-					return $scope.feedback_email = api.err.email.message;
-
-				if (res.status === 500 && api.err && api.err.password)
-					return $scope.feedback_password = api.err.password.message;				
-
-				$scope.feedback_err = "Error de servicio! Contácte al administrdor del sistema.";
+				else if (api.email) {
+					return $scope.feedback_email = api.err;
+				}
+				else if (api.pass) {
+					return $scope.feedback_password = api.err;
+				}
+				else if (api[406] || api[500] || api.err) {
+					return $scope.feedback_err = api.err;
+				}
+				$auth.login({email: vm.email, password: vm.password}).then(function(){
+					localStorage.setItem('user', JSON.stringify(api.user));
+					// Recargar el sitio para que no pueda ser duplicado el registro de super-administrador
+					$window.location.reload();
+					$location.path("/").search({message: "Registro completado! "});
+				});
 			});
+
 		};
 
-	}]);
-
-});
+	});
