@@ -2,6 +2,8 @@
 
 Aplicación de administración de una sola página (Single Page Application Management)
 
+![Dasboard Administration](http://i.imgur.com/1IrQvCA.png)
+
 ## Requisitos
 
 * [NodeJS](https://nodejs.org)

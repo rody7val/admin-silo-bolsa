@@ -1,7 +1,7 @@
 {
   "name": "spa-admin",
   "version": "1.0.0",
-  "description": "Single Page Application Management",
+  "description": "Aplicación de administración de una sola página (Single Page Application Management)",
   "scripts": {
     "postinstall": "npm run build-prod",
     "build-prod": "grunt build-prod",
@@ -34,6 +34,7 @@
     "grunt-html2js": "^0.3.6",
     "jade": "^1.11.0",
     "morgan": "^1.7.0",
-    "serve-favicon": "^2.3.2"
+    "serve-favicon": "^2.3.2",
+    "socket.io": "^2.0.1"
   }
 }

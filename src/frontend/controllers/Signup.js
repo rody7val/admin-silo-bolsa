@@ -12,6 +12,7 @@ App
 		}
 
 		var vm = this;
+		$scope.$parent.parent.setTitle("Nuevo administrador");
 		feedback_reset();
 
 		this.signup = function() {

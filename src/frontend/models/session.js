@@ -1,10 +1,9 @@
-App.factory('Session', function ($http, $location, $auth) {
+App.factory('Session', function ($http, $location, $auth, $window) {
 
 	var ErrService = { err: 'Error de servicio! Contácte al administrdor del sistema.' };
 	var ErrDefault = { err: 'Ups! Algo salio mal.'};
 
 	var Session = {
-
 		forgot: function (email) {
 			var api = $http.post('http://localhost:3000/auth/forgot', {
 				host: $location.protocol() + '://' + $location.host(),

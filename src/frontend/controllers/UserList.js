@@ -13,6 +13,8 @@ App
 			$scope.feedback_err = '';
 		}
 
+		$scope.$parent.parent.setTitle("Usuarios");
+		$scope.$parent.parent.setPage(2);
 		feedback_reset();
 
 		// Evento obtener usuarios

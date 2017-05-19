@@ -8,4 +8,19 @@ var server = http.createServer(backend);
 server.listen(config.port, function (err){  
 	if (err) return console.log(err);
 	console.log('Servidor escuchando en el puerto '+config.port);
-}); 
+});
+
+// Crear socket con el servidor http
+var io = require('socket.io')(server);
+var messages = [];
+
+io.on('connection', function(socket) {  
+    console.log('Un cliente se ha conectado');
+    socket.emit('messages', messages);
+
+    socket.on('new-message', function(data) {  
+        messages.push(data);
+    
+        io.sockets.emit('messages', messages);
+    });
+});

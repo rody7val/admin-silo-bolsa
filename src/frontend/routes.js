@@ -1,3 +1,5 @@
+// var io = io();
+
 var routesApp = function ($authProvider, $stateProvider, $locationProvider) {
 
 	$authProvider.loginUrl = "http://localhost:3000/auth/login";
@@ -15,7 +17,8 @@ var routesApp = function ($authProvider, $stateProvider, $locationProvider) {
 		.state("home", {
 			url: "/",
 			templateUrl: "frontend/templates/index.html",
-			controller: "Home"
+			controller: "Home",
+			controllerAs: "dash"
 		})
 		//session
 		.state("login", {
@@ -62,5 +65,5 @@ var routesApp = function ($authProvider, $stateProvider, $locationProvider) {
 }
 
 var App = angular
-			.module('App', ['satellizer', 'app.templates', 'ui.router'])
+			.module('App', ['satellizer', 'app.templates', 'ui.router', 'btford.socket-io'])
 			.config(routesApp);

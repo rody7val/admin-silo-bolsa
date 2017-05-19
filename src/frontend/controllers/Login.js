@@ -13,6 +13,7 @@ App
 		};
 		
 		var vm = this;
+		$scope.$parent.parent.setTitle("Iniciar sesión");
 		feedback_reset();
 
 		this.login = function () {

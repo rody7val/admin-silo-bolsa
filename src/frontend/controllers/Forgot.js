@@ -14,6 +14,7 @@ App
 
 		var vm = this;
 		feedback_reset();
+		$scope.$parent.parent.setTitle("Recuperar Contraseña");
 
 		this.forgot = function () {
 			$scope.loading = true;	//load
