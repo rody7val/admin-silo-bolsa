@@ -1,6 +1,6 @@
 # admin-silo-bolsa
 
-Administración del proyecto Secado de granos de Silo Bolsas
+Administración del proyecto Secado de Granos de Silo Bolsas
 
 ## Requisitos
 

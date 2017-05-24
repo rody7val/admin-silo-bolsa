@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 
     html2js: {
       options: {
-        module: 'app-cahc.templates',
+        module: 'app.templates',
         singleModule: true,
         useStrict: true,
         htmlmin: {

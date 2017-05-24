@@ -5,6 +5,20 @@ App.factory('User', function ($http, $location) {
 
 	var User = {
 
+		count: function () {
+			var api = $http.get('http://localhost:3000/users/count')
+			.then(function (res) {
+				return res.data;
+			})
+			.catch(function(res){
+				if (!res.data) {
+					return null;
+				}
+			});
+
+			return api;
+		},
+
 		getAll: function () {
 			var api = $http.get('http://localhost:3000/users').then(function (res) {
 				return res.data;

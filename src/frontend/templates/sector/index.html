@@ -1,0 +1,159 @@
+<!-- Plantilla -->
+<section id='template-content' class='{{loading ? "load" : ""}}'>
+
+	<!-- Imagen de carga -->
+	<section id='img-load-content' class='{{loading ? "view" : ""}}'>
+		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
+	</section>
+
+	<div ng-show='!parent.isAuthenticated()'>
+		<br>
+		<p class='center'>Tu sesión expiró.
+			<a href='/login' style='cursor:pointer;'> Inicia Sesión</a>.
+		</p>
+	</div>
+	
+	<!-- Sectors -->
+	<div class='row' ng-show='parent.isAuthenticated()'>
+
+		<!-- Crear Sector -->
+		<div class='col-lg-7'>
+
+			<div class='body-form'>
+				
+				<h4 class='date'>CREAR NUEVO SECTOR</h4>
+				<div class='row'>
+					<!-- sectores -->
+					<div class='col-lg-12'>
+						<!-- name -->
+						<div class='form-group {{feedback_name ? "has-danger" : ""}}'>
+							<label class='col-form-label'><b>Nombre de sector:</b></label>
+							<input type='text' ng-model='sector.name' class='form-control'>
+							<div class='form-control-feedback'>{{feedback_name}}</div>
+						</div>
+
+						<!-- device form -->
+						<div class='form-group {{feedback_device ? "has-danger" : ""}}'>
+							<label class='col-form-label'>
+								<b>Dispositivos:</b>
+							</label>
+							<div class='device-actions dropdown right'>
+								<a href=""
+									id='editar'
+									class='btn btn-outline btn-sm dropdown-toggle'
+									data-toggle='dropdown'
+									aria-haspopup='true'
+									aria-expanded='true'>Acciones</a>
+								<div class='dropdown-menu' aria-labelledby='editar'>
+									<a href=""
+										class='dropdown-item'
+										ng-click='deleteDevice(device.placa, device.pin)'>Quitar item(s)</a>
+								</div>
+							</div>
+							<div class='container form-control'>
+								<!-- listado -->
+								<div class='col-lg-{{data.newDevice ? "6" : "12"}}'>
+									<div 
+										ng-show='sector.devices.length == 0'
+										class='alert alert-info alert-form'>
+										<small>Ningun dispositivo agregado. Intenta buscar uno.</small>
+									</div>
+									<!-- listas -->
+									<div class='list-group' ng-show='sector.devices.length > 0'>
+										<label class='list-group-item list-group-item-action'
+											ng-repeat='device in sector.devices'>
+											<input type='checkbox' ng-model='device.done'>
+											<span>{{device.placa}}_{{device.pin}}</span>
+										</label>
+									</div>
+									<!-- buscar -->
+									<button 
+										ng-click='data.newDevice = !data.newDevice' 
+										class='btn btn-sm btn-primary {{data.newDevice ? "buscando" : ""}}'>
+											{{data.newDevice ? "No buscar" : "Buscar dispositivo"}}
+									</button>
+								</div>
+								<!-- Add new device -->
+								<div class='{{data.newDevice ? "col-lg-6" : "none"}}'>
+									<!-- placas -->
+									<label class='col-form-label col-form-label-sm'><b>Placa</b></label>
+									<select 
+										ng-model='data.model.placa'
+										ng-change='setPlaca(data.model.placa)'
+										class='form-control form-control-sm'>
+										<option selected value=''>--Seleccionar una placa--</option>
+										<option ng-repeat='board in data.boards' ng-value='board._id'>
+											{{board._id}}
+										</option>
+									</select>
+									<!-- device -->
+									<div ng-if='selected.placa'>
+										<label class='col-form-label col-form-label-sm'><b>Sensor/Actuador</b></label>
+										<select ng-model='data.model.pin'
+											ng-change='setPin(data.model.pin)'
+											class='form-control form-control-sm'>
+											<option selected value=''>---Seleccionar un pin---</option>
+											<!-- sensores -->
+											<optgroup
+												ng-show='selected.placa.sensors.pins.length > 0'
+												label='{{selected.placa.sensors.tipo}}:'></optgroup>
+												<option ng-repeat='pin in selected.placa.sensors.pins' ng-value='pin'>
+												{{pin}}
+											</option>
+											<!-- actuadores -->
+											<optgroup
+												ng-show='selected.placa.actuators.pins.length > 0'
+												label='{{selected.placa.actuators.tipo}}:'></optgroup>
+												<option ng-repeat='pin in selected.placa.actuators.pins' ng-value='pin'>
+												{{pin}}
+											</option>
+										</select>
+									</div>
+									<br>
+									<button
+										ng-click='addDevice()'
+										ng-show='selected.placa && selected.pin' 
+										class='btn btn-sm btn-outline-default'>Agregar dispositivo</button>
+									<fieldset ng-show='!selected.placa || !selected.pin' disabled>
+										<button class='btn btn-sm btn-outline-default'>Agregar dispositivo</button>
+									</fieldset>
+								</div>
+							</div>
+							<div class='form-control-feedback'>{{feedback_device}}</div>
+						</div>
+
+					</div>
+				</div>
+				<br>
+				<!-- formulario nuevo sector -->
+				<form ng-submit="create()">
+					<button type='submit' class='btn btn-success'>Guardar sector!</button>
+				</form>				
+			</div>
+
+		</div>
+
+		<div class='col-lg-5'>
+
+			<div class='body-form'>
+				<h4 class='date'>LISTADO DE SECTORES</h4>
+				<!-- Listado de sectores -->
+				<ul ng-show='sectors.length > 0' class='sector-list list-group'>
+					<li ng-repeat='sector in sectors' class="list-group-item">
+						{{sector.name}}
+						<ul>
+							<li ng-repeat='device in sector.devices'><small>{{device.prefix}}</small></li>
+						</ul>
+					</li>
+				</ul>
+				<!-- Alert -->
+				<div class='alert alert-info alert-form' ng-show='sectors.length == 0' style='margin-bottom: 0px;'>
+					<small>Aún no hay sectores</small>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+</section>

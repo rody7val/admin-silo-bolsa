@@ -1,25 +1,24 @@
-define(['./app'], function (app) {
+// var io = io();
 
-	'use strict';
+var routesApp = function ($authProvider, $stateProvider, $locationProvider) {
 
-	return app.config(['$authProvider', '$stateProvider', '$locationProvider', function ($authProvider, $stateProvider, $locationProvider) {
+	$authProvider.loginUrl = "http://localhost:3000/auth/login";
+	$authProvider.signupUrl = "http://localhost:3000/auth/signup";
+	$authProvider.tokenName = "token";
+	$authProvider.tokenPrefix = "myApp";
 
-		$authProvider.loginUrl = "http://localhost:3000/auth/login";
-		$authProvider.signupUrl = "http://localhost:3000/auth/signup";
-		$authProvider.tokenName = "token";
-		$authProvider.tokenPrefix = "cahc";
+	$locationProvider.html5Mode({
+		enabled: true,
+		requireBase: false
+	});
 
-		$locationProvider.html5Mode({
-			enabled: true,
-			requireBase: false
-		});
-
-		// Configuración de las rutas/estados
-		$stateProvider
+	// Configuración de las rutas/estados
+	$stateProvider
 		.state("home", {
 			url: "/",
 			templateUrl: "frontend/templates/index.html",
-			controller: "Home"
+			controller: "Home",
+			controllerAs: "dash"
 		})
 		//session
 		.state("login", {
@@ -51,12 +50,26 @@ define(['./app'], function (app) {
 			templateUrl: null,
 			controller: "Logout"
 		})
+		//sectors
+		.state('sectors', {
+			url: '/sectors',
+			templateUrl: 'frontend/templates/sector/index.html',
+			controller: 'Sector',
+			controllerAs: 'sectors'
+		})
 		//user
 		.state('users', {
 			url: '/users',
 			templateUrl: 'frontend/templates/user/list.html',
 			controller: 'UserList',
 			controllerAs: 'users'
+		})
+		//excel
+		.state('excel', {
+			url: '/excel',
+			templateUrl: 'frontend/templates/excel/index.html',
+			controller: 'Excel',
+			controllerAs: 'excel'
 		})
 		//photoresistor
 		.state('photos', {
@@ -70,7 +83,8 @@ define(['./app'], function (app) {
 			url: "/*path",
 			templateUrl: "frontend/templates/404.html"
 		});
+}
 
-	}]);
-
-});
+var App = angular
+			.module('App', ['satellizer', 'app.templates', 'ui.router', 'btford.socket-io'])
+			.config(routesApp);

@@ -1,49 +1,93 @@
 doctype html
-html(lang='es')
+html(lang='es', ng-app='App')
 	head
 		base(href='/')
 		meta(charset='utf-8')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
-		title Administración
+		title Administración socketio.js
 		block meta
-		script(src='/js/lib/jquery/jquery.js', type="text/javascript")
-		script(src='/js/lib/tether/tether.js', type="text/javascript")
-		script(src='/js/lib/bootstrap/bootstrap.js', type="text/javascript")
-		script(src='/js/lib/moment/moment.js', type="text/javascript")
-		script(src='/js/app/moment-with-locales.js', type="text/javascript")
-		script(src='/js/app/time.js', type="text/javascript")
+		//- Socket.io
+		script(type="text/javascript", src='/js/lib/socket.io-client/dist/socket.io.js')
+		//- Bootstrap
+		script(type="text/javascript", src='/js/lib/jquery/jquery.js')
+		script(type="text/javascript", src='/js/lib/tether/tether.js')
+		script(type="text/javascript", src='/js/lib/bootstrap/bootstrap.js')
+		//- Formato de Fechas
+		script(type="text/javascript", src='/js/lib/moment/moment.js')
+		script(type="text/javascript", src='/js/app/moment-with-locales.js')
+		//- Angular
+		script(type="text/javascript", src='/js/lib/angular/angular.js')
+		script(type="text/javascript", src='/js/lib/angular-ui-router/angular-ui-router.js')
+		script(type="text/javascript", src='/js/lib/satellizer/satellizer.js')
+		script(type="text/javascript", src='/js/lib/angular-socket-io/socket.js')
+		//- script(type="text/javascript", src='/js/lib/angular-imgur-upload/angular-imgur-upload.min.js')
 		block js
-		link(href='/css/bootstrap.min.css', rel="stylesheet", type="text/css")
-		link(href='/css/style.css', rel="stylesheet", type="text/css")
+		link(rel="stylesheet", type="text/css", href='/css/bootstrap.min.css')
+		link(rel="stylesheet", type="text/css", href='/css/style.css')
 		block css
-	body(ng-controller='Main')
-		//- Menu
-		header.navbar.navbar-fixed-top(ng-controller='IsAuthenticated')
-			nav.container
-				a.navbar-brand(href='/', title='Home')
-					img(src='/img/logo.svg' alt='logo.svg')
-				ul.nav.navbar-nav.right(ng-if='!isAuthenticated()')
-					li.nav-item
-						a.nav-link(href='/login', title='Entrar') Entrar
-					li.nav-item
-						a.nav-link(href='/signup', title='Registrarse') Registrarse
-				ul.nav.navbar-nav.right(ng-if='isAuthenticated()')
-					li.nav-item.dropdown
-						#userMenu.nav-link.dropdown-toggle(
-							title='{{getName()}}'
-							data-toggle="dropdown"
-							aria-haspopup="true"
-							aria-expanded="true"
-						) {{getName()}}
-						.dropdown-menu(aria-labelledby='userMenu')
-							a.dropdown-item(href='/logout', title='Salir') Salir
+	body(ng-controller='Main as parent')
+		//- Menu top
+		header#menuTop.navbar.navbar-fixed-top.navbar-inverse(style="background: #4285f4;")
+			nav
+				//- Left
+				.navbar-brand.left
+					ul.nav.navbar-nav 
+						.nav-item {{parent.title}}
+				//- Right
+				.navbar-brand.right
+					ul.nav.navbar-nav(ng-if='!parent.isAuthenticated()')
+						li.nav-item
+							a.nav-link(href='/login', title='Entrar') Entrar
+						li.nav-item
+							a.nav-link(href='/signup', title='Registrarse') Registrarse
+					ul.nav.navbar-nav(ng-if='parent.isAuthenticated()')
+						li.nav-item.dropdown
+							#userMenu.nav-link.dropdown-toggle(
+								title='{{parent.getName()}}'
+								data-toggle="dropdown"
+								aria-haspopup="true"
+								aria-expanded="true"
+							) {{parent.getName()}}
+							.dropdown-menu(aria-labelledby='userMenu')
+								a.dropdown-item(href='/logout', title='Salir') Salir
+		//- Menu left
+		header#menuLeft.navbar.navbar-inverse.bg-inverse.menubar(ng-if='parent.isAuthenticated()')
+			nav
+				.navbar-brand
+					ul.nav.navbar-nav
+						//- dashboard
+						li.block.nav-item(class='{{parent.currentPage == 1 ? "active" : ""}}')
+							a(	class='nav-link'
+								ng-click='parent.currentPage = 1'
+								href='/')
+								img.center.img-fluid(src='/img/dashboard.svg' alt='Tablero de instrumentos')
+								span.center.block Tiempo real
+						//- users
+						li.block.nav-item(class='{{parent.currentPage == 2 ? "active" : ""}}')
+							a(	class='nav-link'
+								ng-click='parent.currentPage = 2'
+								href='/sectors')
+								img.center.img-fluid(src='/img/sector.svg' alt='Sectores')
+								span.center.block Sectores
+						//- users
+						li.block.nav-item(class='{{parent.currentPage == 3 ? "active" : ""}}')
+							a(	class='nav-link'
+								ng-click='parent.currentPage = 3'
+								href='/users')
+								img.center.img-fluid(src='/img/users.svg' alt='Usuarios')
+								span.center.block Usuarios
+						//- exports excel
+						li.block.nav-item(class='{{parent.currentPage == 4 ? "active" : ""}}')
+							a(	class='nav-link'
+								ng-click='parent.currentPage = 4'
+								href='/excel')
+								img.center.img-fluid(src='/img/excel.svg' alt='Exportar datos a excel')
+								span.center.block Exportar a excel
 		//- Contenido principal
-		section#main
+		section#main(style="margin-left: {{parent.getbodyMargin() ? '120':'0'}}px !important;width: calc(100% - {{parent.getbodyMargin() ? '120':'0'}}px);height: calc(100% - {{parent.getbodyMargin() ? '56':'0'}}px);")
 			block content
 		//- Pie de página
-		footer.footer
-			.container
-				p.center.date 
-					small.lead Sistema de Administración Web
+		footer#menuBottom.footer.navbar.navbar-fixed-bottom(style="margin-left:{{ parent.getbodyMargin() ? '120':'0'}}px!important")
+			.date.lead © 2017 Administración
 		//- Scripts
 		block js_footer

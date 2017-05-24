@@ -1,16 +1,3 @@
-<!-- Navegación, fecha y hora-->
-<div id='subnav'>
-	<ol class='breadcrumb'>
-		<div class='container'>
-			<li class='breadcrumb-item'>
-				<a class='breadcrumb-link' href="/">Admin</a>
-			</li>
-			<li class='breadcrumb-item active'>Listado de usuarios</li>
-			<div id='time' class='right date'></div>
-		</div>
-	</ol>
-</div>
-
 <!-- Plantilla -->
 <section id='template-content' class='{{loading ? "load" : ""}}'>
 
@@ -19,14 +6,15 @@
 		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
 	</section>
 	
-	<!-- Titulo -->
-	<div class='head-title'>
-		<h1 class='center light'>Listado de usuarios</h1>
+	<div ng-show='!parent.isAuthenticated()'>
+		<br>
+		<p class='center'>Tu sesión expiró.
+			<a href='/login' style='cursor:pointer;'> Inicia Sesión</a>.
+		</p>
 	</div>
 	
-
-	<!-- Listado de Noticias -->
-	<div class='container body-form'>
+	<!-- Listado de Usurios -->
+	<div class='container body-form' ng-show='parent.isAuthenticated()'>
 
 		<!-- Errors -->
 		<div ng-show='feedback_err' class='alert alert-danger'>

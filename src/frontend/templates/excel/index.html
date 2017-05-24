@@ -1,0 +1,27 @@
+<!-- Plantilla -->
+<section id='template-content' class='{{loading ? "load" : ""}}'>
+
+	<!-- Imagen de carga -->
+	<section id='img-load-content' class='{{loading ? "view" : ""}}'>
+		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
+	</section>
+
+	<div ng-show='!parent.isAuthenticated()'>
+		<br>
+		<p class='center'>Tu sesión expiró.
+			<a href='/login' style='cursor:pointer;'> Inicia Sesión</a>.
+		</p>
+	</div>
+		
+	<!-- Excel export -->
+	<div class='container body-form' ng-show='parent.isAuthenticated()'>
+
+		<!-- Errors -->
+		<div ng-show='feedback_err' class='alert alert-danger'>
+			{{feedback_err}}
+		</div>
+		<h1>excel export</h1>
+		<a href="/" class='btn btn-link'>Volver</a>
+	</div>
+
+</section>

@@ -1,6 +1,6 @@
 {
   "name": "spa-admin",
-  "description": "Single Page Application Management",
+  "description": "Aplicación de administración de una sola página (Single Page Application Management)",
   "main": "./bin/www",
   "authors": [
     "Rodolfo Valguarnera <rod7val@gmail.com> (https://github.com/rody7val/)"
@@ -21,9 +21,9 @@
     "angular": "1.5.0",
     "bootstrap": "4.0.0-alpha.5",
     "jquery": "3.1.1",
-    "requirejs": "latest",
-    "requirejs-domready": "latest",
     "satellizer": "^0.15.5",
-    "angular-imgur-upload": "^0.0.3"
+    "angular-imgur-upload": "^0.0.3",
+    "socket.io-client": "^2.0.1",
+    "angular-socket-io": "^0.7.0"
   }
 }

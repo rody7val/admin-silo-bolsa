@@ -1,64 +1,35 @@
-define(['./module'], function (controllers) {
+App
+	.controller('Forgot', function ($scope, $auth, $location, $http, Session) {
 
-	'use strict';
+		if ($auth.isAuthenticated()) { return $location.path("/") };
 
-	controllers.controller('Forgot', ['$scope', '$auth', '$location', '$http', function ($scope, $auth, $location, $http) {
+		if ($location.search().err) { $scope.feedback_err = $location.search().err };
 
-		if ($auth.isAuthenticated())
-			return $location.path("/");
+		function feedback_reset() {
+			$scope.loading = false;
+			$scope.feedback_email = '';
+			$scope.feedback_err = '';
+			$scope.feedback_success = '';
+		}
 
 		var vm = this;
-		$scope.loading = false;
-		$scope.feedback_email = '';
-		$scope.feedback_err = '';
-		$scope.feedback_success = '';
+		feedback_reset();
+		$scope.$parent.parent.setTitle("Recuperar Contraseña");
 
-		if ($location.search().err)
-			$scope.feedback_err = $location.search().err;
-
-		this.forgot = function(){
-			$scope.loading = true;
-
-			// Url API Auth.forgot()
-			$http.post('http://localhost:3000/auth/forgot', {
-				host: $location.protocol() + '://' + $location.host(),
-				email: vm.email,
-				// Nombre de la compañía
-				name: 'MySite',
-				// Email from
-				email_from: 'resetpassword@mysite.com'
-			})
-			.then(function(res){
-				var api = res.data;
-
-				if (res.status === 200) {
-					$scope.loading = false;
-					$scope.feedback_email = '';
-					$scope.feedback_err = '';
-					$scope.feedback_success = '';
-					vm.email = '';
-
-					if (api.message) {
-						return $scope.feedback_success = api.message;
-					}
-				}
-			})
-			.catch(function(res){
-				$scope.loading = false;
-				$scope.feedback_success = '';
-				$scope.feedback_email = '';
-				$scope.feedback_err = '';
-				var api = res.data;
-
-				if (api.err && api.status == 401) {
+		this.forgot = function () {
+			$scope.loading = true;	//load
+			
+			Session
+			.forgot(vm.email)
+			.then(function (api){
+				feedback_reset();	//reset load
+				if (api.email) {
 					return $scope.feedback_email = api.err;
-				} else if (api.err && api.status == 500) {
-					return $scope.feedback_err = api.err;
+				} else if (api[403] || api[500] || api.err) {
+					return  $scope.feedback_err = api.err;
 				}
-				$scope.feedback_err = "Error de servicio! Contácte al administrdor del sistema.";
+				return $scope.feedback_success = api.message;
 			});
 		};
 
-	}]);
-
-});
+	});
