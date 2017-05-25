@@ -20,9 +20,13 @@ html(lang='es', ng-app='App')
 		script(type="text/javascript", src='/js/lib/angular-ui-router/angular-ui-router.js')
 		script(type="text/javascript", src='/js/lib/satellizer/satellizer.js')
 		script(type="text/javascript", src='/js/lib/angular-socket-io/socket.js')
+		script(type="text/javascript", src='/js/lib/d3/d3.js')
+		script(type="text/javascript", src='/js/lib/nvd3/nv.d3.js')
+		script(type="text/javascript", src='/js/lib/angular-nvd3/angular-nvd3.js')
 		//- script(type="text/javascript", src='/js/lib/angular-imgur-upload/angular-imgur-upload.min.js')
 		block js
 		link(rel="stylesheet", type="text/css", href='/css/bootstrap.min.css')
+		link(rel="stylesheet", type="text/css", href='/js/lib/nvd3/nv.d3.css')
 		link(rel="stylesheet", type="text/css", href='/css/style.css')
 		block css
 	body(ng-controller='Main as parent')

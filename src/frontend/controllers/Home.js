@@ -15,10 +15,12 @@ App
 		
 		$scope.$parent.parent.setTitle("Tiempo real");	//title
 		$scope.$parent.parent.setPage(1);	//menu
+		$scope.messages = [];
 
 		var vm = this;
 
 		this.reload = function () {
 			return $window.location.reload();
 		}
+
 	});

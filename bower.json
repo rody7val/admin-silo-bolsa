@@ -24,6 +24,7 @@
     "satellizer": "^0.15.5",
     "angular-imgur-upload": "^0.0.3",
     "socket.io-client": "^2.0.1",
-    "angular-socket-io": "^0.7.0"
+    "angular-socket-io": "^0.7.0",
+    "angular-nvd3": "^1.0.9"
   }
 }

@@ -285,3 +285,11 @@ label {
     -o-transition: width 0.5s ease;
     transition: width 0.5s ease;
 }
+.card-header.active{
+    color: #fff;
+    background-color: #0275d8;
+    border-color: #0275d8;
+}
+.card-content{
+    margin-top: 10px;
+}
