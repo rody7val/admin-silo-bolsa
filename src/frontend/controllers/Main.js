@@ -1,5 +1,5 @@
 App
-	.controller('Main', function ($auth, $scope, $http, $rootScope, $urlRouter, $location, $window, User, Sector, Board, Socket) {
+	.controller('Main', function ($auth, $scope, $http, $rootScope, $urlRouter, $location, $window, User) {
 		
 		var _self = this;
 		function feedback_reset() {
@@ -7,7 +7,7 @@ App
 			$scope.loading = false;
 			_self.errConect = false;
 			_self.usersCount = 0;
-			_self.sectorCount = 0;
+			_self.sensorCount = 0;
 			_self.sectors = [];
 		}
 		$scope.reload = function () {
@@ -57,28 +57,6 @@ App
 			});
 		}
 
-		this.getSectorCount = function () {
-			Sector
-			.count()
-			.then(function (api) {
-				if (api == null){
-					return _self.errConect = true;
-				}
-				_self.sectorCount = api.count;
-			});
-		}
-
-		this.getBoardCount = function () {
-			Board
-			.count()
-			.then(function (api) {
-				if (api == null){
-					return _self.errConect = true;
-				}
-				_self.boardCount = api.count;
-			});
-		}
-
 		this.getbodyMargin = function () {
 			_self.auth = $auth.isAuthenticated();
 			return _self.auth;
@@ -113,27 +91,6 @@ App
 			return 'undefined';
 		}
 
-		this.getSectors = function () {
-			Socket.on('sectors', function (data) {
-				// por cada sector traido del server
-				var sectors = data.map(function (sector, index) {
-					// inicializo variables
-					sector.done = false;
-					sector.init = 1;
-					// y datos importantes de graficos
-					sector.chart = sector.devices.map(function (device, index) {
-						return {
-							key: device.prefix,
-							values: []
-						}
-					});
-
-					return sector;
-				});
-				_self.sectors = sectors;
-			});
-		}
-
 		$scope.newChart = function (sector) {
 			sector.done = !sector.done;
 			if (sector.init == 1) {
@@ -142,34 +99,8 @@ App
 			}
 		}
 
-		this.getSensors = function () {
-			// por cada sensor traido del server
-			Socket.on('sensors', function (data) {
-				// recorro los sectores en el lado cliente
-				Object.keys(_self.sectors).forEach(function (key) {
-					// comparo id's
-					if (_self.sectors[key]._id === data.sector) {
-						// y recorro cada objeto de presentacion para el grafico de los dispositivos del sector
-						angular.forEach(_self.sectors[key].chart, function (value, index) {
-							// y si el prefijo traido del server es igual al prefijo de presentacion 
-							if (data.prefix === value.key) {
-								// lo guardo
-								console.log(data.values)
-								_self.sectors[key].chart[index].values.push(data.values);	
-							};
-						});
-					}
-				});
-			});
-		}
-
-		// Grafics
-		this.getSectors();
-		this.getSensors();
 		// Counts
 		this.getUserCount();
-		this.getSectorCount();
-		this.getBoardCount();
 		this.setName();
 
 	});

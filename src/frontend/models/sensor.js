@@ -1,12 +1,12 @@
-App.factory('Board', function ($http, $location){
+App.factory('Sensor', function ($http, $location) {
 
 	var ErrService = { err: 'Error de servicio! Contácte al administrdor del sistema.' };
 	var ErrDefault = { err: 'Ups! Algo salio mal.'};
 
-	var Board = {
+	var Sensor = {
 
 		count: function () {
-			var api = $http.get('http://localhost:3000/boards/count')
+			var api = $http.get('http://localhost:3000/sensors/count')
 			.then(function (res) {
 				return res.data;
 			})
@@ -20,14 +20,14 @@ App.factory('Board', function ($http, $location){
 		},
 
 		getAll: function () {
-			var api = $http.get('http://localhost:3000/boards').then(function (res) {
+			var api = $http.get('http://localhost:3000/sensors').then(function (res) {
 				return res.data;
 			}).catch(function (res) {
 				if (!res.data) {
 					return ErrService;
 				}
-				if (res.status === 500 && res.data.err) {
-					return { err: res.data.err, "500": true };
+				if (res.status === 403 && res.data.err) {
+					return $location.path('/login').search({ err: res.data.err });
 				}
 				return ErrDefault;
 			});
@@ -37,5 +37,7 @@ App.factory('Board', function ($http, $location){
 
 	};
 
-	return Board;
+	return Sensor;
+
 });
+

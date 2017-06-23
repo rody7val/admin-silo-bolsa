@@ -48,12 +48,10 @@ var routesApp = function ($authProvider, $stateProvider, $locationProvider) {
 			templateUrl: null,
 			controller: "Logout"
 		})
-		//sectors
-		.state('sectors', {
-			url: '/sectors',
-			templateUrl: 'frontend/templates/sector/index.html',
-			controller: 'Sector',
-			controllerAs: 'sectors'
+		//sensor
+		.state('sensor', {
+			controller: 'Sensor',
+			controllerAs: 'sensor'
 		})
 		//user
 		.state('users', {
@@ -68,13 +66,6 @@ var routesApp = function ($authProvider, $stateProvider, $locationProvider) {
 			templateUrl: 'frontend/templates/excel/index.html',
 			controller: 'Excel',
 			controllerAs: 'excel'
-		})
-		//photoresistor
-		.state('photos', {
-			url: '/photoresistors',
-			templateUrl: 'frontend/templates/photo/list.html',
-			controller: 'PhotoList',
-			controllerAs: 'photos'
 		})
 		//default
 		.state("otherwise", {

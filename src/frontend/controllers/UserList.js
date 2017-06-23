@@ -14,7 +14,7 @@ App
 		}
 
 		$scope.$parent.parent.setTitle("Usuarios");
-		$scope.$parent.parent.setPage(3);
+		$scope.$parent.parent.setPage(2);
 		feedback_reset();
 
 		// Evento obtener usuarios

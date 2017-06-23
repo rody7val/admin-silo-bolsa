@@ -70,20 +70,13 @@ html(lang='es', ng-app='App')
 						li.block.nav-item(class='{{parent.currentPage == 2 ? "active" : ""}}')
 							a(	class='nav-link'
 								ng-click='parent.currentPage = 2'
-								href='/sectors')
-								img.center.img-fluid(src='/img/sector.svg' alt='Sectores')
-								span.center.block Sectores
-						//- users
-						li.block.nav-item(class='{{parent.currentPage == 3 ? "active" : ""}}')
-							a(	class='nav-link'
-								ng-click='parent.currentPage = 3'
 								href='/users')
 								img.center.img-fluid(src='/img/users.svg' alt='Usuarios')
 								span.center.block Usuarios
 						//- exports excel
-						li.block.nav-item(class='{{parent.currentPage == 4 ? "active" : ""}}')
+						li.block.nav-item(class='{{parent.currentPage == 3 ? "active" : ""}}')
 							a(	class='nav-link'
-								ng-click='parent.currentPage = 4'
+								ng-click='parent.currentPage = 3'
 								href='/excel')
 								img.center.img-fluid(src='/img/excel.svg' alt='Exportar datos a excel')
 								span.center.block Exportar a excel

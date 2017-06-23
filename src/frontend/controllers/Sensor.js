@@ -1,29 +1,11 @@
 App
-	.controller('Sector', function ($scope, $auth, $location, $http, Sector, Board) {
+	.controller('Sensor', function ($scope, $auth, $location) {
 
 		if (!$auth.isAuthenticated()) {
 			return $location.path('/login');
 		}
 
-		$scope.sectors = [];
-		$scope.selected = {
-			placa: null,
-			pin: null
-		};
-		$scope.sector = {
-			name: '',
-    		devices: []
-		};
-		$scope.data = {
-			model: {
-				placa: null,
-				pin: null,
-				prefix: '',
-				done: false
-			},
-			newDevice: false,
-			boards: []
-		};
+		$scope.sensors = [];
 
 		function feedback_reset() {
 			$scope.loading = false;
@@ -32,7 +14,7 @@ App
 			$scope.feedback_err = '';
 		}
 
-		$scope.$parent.parent.setTitle("Sectores");
+		$scope.$parent.parent.setTitle("Sensores");
 		$scope.$parent.parent.setPage(2);
 		feedback_reset();
 
@@ -50,19 +32,19 @@ App
 			});
 		};
 
-		this.getAllBoards = function () {
-			$scope.loading = true;	//load
+		// this.getAllBoards = function () {
+		// 	$scope.loading = true;	//load
 
-			Board
-			.getAll()
-			.then(function (api) {
-				feedback_reset();	//reset load
-				if (api[500] || api.err) {
-					return $scope.feedback_err = api.err;
-				}
-				$scope.data.boards = api.boards; 
-			});
-		};
+		// 	Board
+		// 	.getAll()
+		// 	.then(function (api) {
+		// 		feedback_reset();	//reset load
+		// 		if (api[500] || api.err) {
+		// 			return $scope.feedback_err = api.err;
+		// 		}
+		// 		$scope.data.boards = api.boards; 
+		// 	});
+		// };
 
 		$scope.setDate = function(date) {
 			return moment(date).locale('es').calendar();

@@ -12,16 +12,29 @@
 			<a href='/login' style='cursor:pointer;'> Inicia Sesión</a>.
 		</p>
 	</div>
-		
-	<!-- Excel export -->
-	<div class='container body-form' ng-show='parent.isAuthenticated()'>
 
-		<!-- Errors -->
-		<div ng-show='feedback_err' class='alert alert-danger'>
-			{{feedback_err}}
+	<div class='col-lg-6'>
+		<!-- Excel export -->
+		<div class='body-form' ng-show='parent.isAuthenticated()'>
+			<!-- Errors -->
+			<div ng-show='feedback_err' class='alert alert-danger'>
+				{{feedback_err}}
+			</div>
+			<h4 class='date'>EXPORTAR DATOS A EXCEL</h4>
+			<!-- Listado de sectores -->
+			<form ng-submit="export()">
+				<!-- date -->
+				<label class='col-form-label'><b>Día</b></label>
+				<input class="form-control" type='date' ng-model='data.date_false' ng-change='formatDate()' required>
+				<button type='submit' class='btn btn-success'>Descargar hoja de cácluclo!</button>
+			</form>
+			<!-- Alert -->
+			<div class='alert alert-info alert-form'
+				ng-show='sectors.length == 0'
+				style='margin-bottom: 0px;'>
+				<small>Aún no hay sectores. <a href="/sectors">Crea uno</a></small>
+			</div>
 		</div>
-		<h1>excel export</h1>
-		<a href="/" class='btn btn-link'>Volver</a>
 	</div>
 
 </section>
