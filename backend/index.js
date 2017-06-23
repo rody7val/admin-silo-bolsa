@@ -22,7 +22,13 @@ app.use(favicon(config.raiz+'/dist/img/favicon.ico'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(logger('dev'));
+app.use(function(req, res, next){
+	// hacer visible variables de entorno en las vistas
+    res.locals.config = config;
+    next();
+});
 app.use(api);
+
 
 // Retornar aplicación.
 module.exports = app;

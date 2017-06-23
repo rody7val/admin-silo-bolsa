@@ -6,7 +6,7 @@ App.factory('Sensor', function ($http, $location) {
 	var Sensor = {
 
 		count: function () {
-			var api = $http.get('http://localhost:3000/sensors/count')
+			var api = $http.get(API_HOST + '/sensors/count')
 			.then(function (res) {
 				return res.data;
 			})
@@ -20,7 +20,7 @@ App.factory('Sensor', function ($http, $location) {
 		},
 
 		getAll: function () {
-			var api = $http.get('http://localhost:3000/sensors').then(function (res) {
+			var api = $http.get(API_HOST + '/sensors').then(function (res) {
 				return res.data;
 			}).catch(function (res) {
 				if (!res.data) {

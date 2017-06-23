@@ -6,7 +6,7 @@ App.factory('Excel', function ($http, $location) {
 	var Excel = {
 
 		export: function (date) {
-			var api = $http.post('http://localhost:3000/excel')
+			var api = $http.post(API_HOST + '/excel')
 			.then(function (res) {
 				return res.data;
 			})

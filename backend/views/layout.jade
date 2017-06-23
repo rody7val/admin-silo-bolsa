@@ -6,6 +6,8 @@ html(lang='es', ng-app='App')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		title Administración socketio.js
 		block meta
+		script.
+			var API_HOST = "!{config.API_HOST}";
 		//- Socket.io
 		script(type="text/javascript", src='/js/lib/socket.io-client/dist/socket.io.js')
 		//- Bootstrap
@@ -23,6 +25,7 @@ html(lang='es', ng-app='App')
 		script(type="text/javascript", src='/js/lib/d3/d3.js')
 		script(type="text/javascript", src='/js/lib/nvd3/nv.d3.js')
 		script(type="text/javascript", src='/js/lib/angular-nvd3/angular-nvd3.js')
+		script(type="text/javascript", src='/js/lib/angular-environment/angular-environment.js')
 		//- script(type="text/javascript", src='/js/lib/angular-imgur-upload/angular-imgur-upload.min.js')
 		block js
 		link(rel="stylesheet", type="text/css", href='/css/bootstrap.min.css')

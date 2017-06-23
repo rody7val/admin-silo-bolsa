@@ -6,7 +6,7 @@ App.factory('User', function ($http, $location) {
 	var User = {
 
 		count: function () {
-			var api = $http.get('http://localhost:3000/users/count')
+			var api = $http.get(API_HOST + '/users/count')
 			.then(function (res) {
 				return res.data;
 			})
@@ -20,7 +20,7 @@ App.factory('User', function ($http, $location) {
 		},
 
 		getAll: function () {
-			var api = $http.get('http://localhost:3000/users').then(function (res) {
+			var api = $http.get(API_HOST + '/users').then(function (res) {
 				return res.data;
 			}).catch(function (res) {
 				if (!res.data) {
@@ -36,7 +36,7 @@ App.factory('User', function ($http, $location) {
 		},
 
 		block: function (id) {
-			var api = $http.get('http://localhost:3000/users/'+id+'/block').then(function (res) {
+			var api = $http.get(API_HOST + '/users/'+id+'/block').then(function (res) {
 				return res.data;
 			}).catch(function (res) {
 				if (!res.data) {
@@ -52,7 +52,7 @@ App.factory('User', function ($http, $location) {
 		},
 
 		delete: function (id) {
-			var api = $http.get('http://localhost:3000/users/'+id+'/delete').then(function (res) {
+			var api = $http.get(API_HOST + '/users/'+id+'/delete').then(function (res) {
 				return res.data;
 			}).catch(function (res) {
 				if (!res.data) {
@@ -68,7 +68,7 @@ App.factory('User', function ($http, $location) {
 		},
 
 		activate: function (id) {
-			var api = $http.get('http://localhost:3000/users/'+id+'/active').then(function (res) {
+			var api = $http.get(API_HOST + '/users/'+id+'/active').then(function (res) {
 				return res.data;
 			}).catch(function (res) {
 				if (!res.data){

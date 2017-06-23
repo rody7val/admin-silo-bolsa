@@ -1,7 +1,7 @@
 var routesApp = function ($authProvider, $stateProvider, $locationProvider) {
 
-	$authProvider.loginUrl = "http://localhost:3000/auth/login";
-	$authProvider.signupUrl = "http://localhost:3000/auth/signup";
+	$authProvider.loginUrl = API_HOST + "/auth/login";
+	$authProvider.signupUrl = API_HOST + "/auth/signup";
 	$authProvider.tokenName = "token";
 	$authProvider.tokenPrefix = "myApp";
 

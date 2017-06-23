@@ -5,7 +5,7 @@ App.factory('Session', function ($http, $location, $auth, $window) {
 
 	var Session = {
 		forgot: function (email) {
-			var api = $http.post('http://localhost:3000/auth/forgot', {
+			var api = $http.post(API_HOST + '/auth/forgot', {
 				host: $location.protocol() + '://' + $location.host(),
 				email: email,
 				// Nombre de la compañía
@@ -68,7 +68,7 @@ App.factory('Session', function ($http, $location, $auth, $window) {
 		},
 
 		reset: function (pass) {
-			var api = $http.post('http://localhost:3000/auth' + $location.path(), {
+			var api = $http.post(API_HOST + '/auth' + $location.path(), {
 				password: pass,
 				host: $location.protocol() + '://' + $location.host(),
 				name: 'MySite',
@@ -92,7 +92,7 @@ App.factory('Session', function ($http, $location, $auth, $window) {
 		},
 
 		confirmToken: function () {
-			var api = $http.get('http://localhost:3000/auth' + $location.path())
+			var api = $http.get(API_HOST + '/auth' + $location.path())
 			.then(function (res) {
 				return res.data;
 			})
