@@ -32,20 +32,6 @@ App
 			});
 		};
 
-		// this.getAllBoards = function () {
-		// 	$scope.loading = true;	//load
-
-		// 	Board
-		// 	.getAll()
-		// 	.then(function (api) {
-		// 		feedback_reset();	//reset load
-		// 		if (api[500] || api.err) {
-		// 			return $scope.feedback_err = api.err;
-		// 		}
-		// 		$scope.data.boards = api.boards; 
-		// 	});
-		// };
-
 		$scope.setDate = function(date) {
 			return moment(date).locale('es').calendar();
 		};

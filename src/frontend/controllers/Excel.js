@@ -24,7 +24,7 @@ App
 		}
 
 		$scope.export = function () {
-			$window.open('http://localhost:3000/excel/' + $scope.data.date)
+			$window.open(API_HOST + '/excel/' + $scope.data.date)
 		}
 
 		$scope.setDate = function(date) {
