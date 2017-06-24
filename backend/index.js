@@ -1,5 +1,5 @@
 // Dependencias
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 var config = require('../config'),
 	express = require('express'),
 	cors = require('cors'),
