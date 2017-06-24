@@ -1,5 +1,4 @@
 // Dependencias
-require('dotenv').config({ path: '../.env' });
 var config = require('../config'),
 	express = require('express'),
 	cors = require('cors'),
@@ -29,7 +28,6 @@ app.use(function(req, res, next){
     next();
 });
 app.use(api);
-
 
 // Retornar aplicación.
 module.exports = app;

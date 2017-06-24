@@ -17,15 +17,14 @@ App
 
 		this.signup = function() {
 			$scope.loading = true;	//load
-
 			Session
 			.signUp({
 				name: vm.name,
 				email: vm.email,
 				password: vm.password,
-				superAdmin: $scope.usersCount == 0 ? true : false,
-				admin: $scope.usersCount == 0 ? true : false,
-				active: $scope.usersCount == 0 ? true : false
+				superAdmin: $scope.$parent.parent.usersCount == 0 ? true : false,
+				admin: $scope.$parent.parent.usersCount == 0 ? true : false,
+				active: $scope.$parent.parent.usersCount == 0 ? true : false
 			})
 			.then(function (api) {
 				feedback_reset();	//load reset
