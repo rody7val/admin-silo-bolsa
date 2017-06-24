@@ -1,4 +1,5 @@
 // Dependencias
+require('dotenv').config();
 var config = require('../config'),
 	express = require('express'),
 	cors = require('cors'),
