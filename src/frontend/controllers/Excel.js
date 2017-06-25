@@ -8,6 +8,7 @@ App
 		function feedback_reset() {
 			$scope.loading = false;
 			$scope.feedback_err = '';
+			$scope.feedback_success = '';
 		}
 
 		$scope.data = {
@@ -19,12 +20,25 @@ App
 		feedback_reset();
 
 		$scope.formatDate = function () {
-			$scope.data.date = moment($scope.data.date_false).format('YYYY-MM-DD') + 'T12:00:00-03:00';
-			console.log(typeof $scope.data.date);
+			feedback_reset();
+			$scope.data.date = moment($scope.data.date_false).unix();
+		}
+
+		$scope.quit = function () {
+			feedback_reset();
 		}
 
 		$scope.export = function () {
-			$window.open(API_HOST + '/excel/' + $scope.data.date)
+			Excel
+			.export($scope.data.date)
+			.then(function (api) {
+				feedback_reset();
+				if (api[500]) {
+					return $scope.feedback_err = api.err;
+				}
+				$scope.feedback_success = "Se exportaron " + api.sensors.length + " registros.";
+				$window.open(API_HOST + '/excel/' + $scope.data.date)
+			});
 		}
 
 		$scope.setDate = function(date) {

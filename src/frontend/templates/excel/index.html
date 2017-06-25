@@ -16,11 +16,16 @@
 	<div class='col-lg-6'>
 		<!-- Excel export -->
 		<div class='body-form' ng-show='parent.isAuthenticated()'>
+			<h4 class='date'>EXPORTAR DATOS A EXCEL</h4>
 			<!-- Errors -->
 			<div ng-show='feedback_err' class='alert alert-danger'>
+				<button type="button" class="close" ng-click='quit()'><span>&times;</span></button>
 				{{feedback_err}}
 			</div>
-			<h4 class='date'>EXPORTAR DATOS A EXCEL</h4>
+			<div ng-show='feedback_success' class='alert alert-success'>
+				<button type="button" class="close" ng-click='quit()'><span>&times;</span></button>
+				{{feedback_success}}
+			</div>
 			<!-- Listado de sectores -->
 			<form ng-submit="export()">
 				<!-- date -->

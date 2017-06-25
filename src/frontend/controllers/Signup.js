@@ -17,8 +17,7 @@ App
 
 		this.signup = function() {
 			$scope.loading = true;	//load
-			Session
-			.signUp({
+			Session.signUp({
 				name: vm.name,
 				email: vm.email,
 				password: vm.password,

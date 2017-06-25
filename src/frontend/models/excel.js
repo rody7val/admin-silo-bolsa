@@ -6,14 +6,18 @@ App.factory('Excel', function ($http, $location) {
 	var Excel = {
 
 		export: function (date) {
-			var api = $http.post(API_HOST + '/excel')
+			var api = $http.get(API_HOST + '/excel/check/' + date)
 			.then(function (res) {
 				return res.data;
 			})
 			.catch(function(res){
-				if (!res.data) {
-					return null;
+				if (res.status == 500 && res.data.err) {
+					return { err: res.data.err, "500": true };
 				}
+				if (res.status == 500 && res.data.message) {
+					return { err: res.data.message, "500": true };
+				}
+				return ErrDefault;
 			});
 
 			return api;
