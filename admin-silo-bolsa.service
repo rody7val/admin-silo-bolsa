@@ -1,0 +1,16 @@
+[Unit]
+Description=Administración del proyecto Secado de granos de Silo Bolsas
+
+[Service]
+ExecStart=/usr/bin/node /home/pi/apps/admin-silo-bolsa/bin/www 
+
+Restart=always
+ # Restart service after 10 seconds if node service crashes
+ RestartSec=10
+ # Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=admin-silo-bolsa
+
+[Install]
+WantedBy=multi-user.target
