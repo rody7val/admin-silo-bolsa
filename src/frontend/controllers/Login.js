@@ -11,7 +11,7 @@ App
 			$scope.feedback_password = '';
 			$scope.feedback_err = '';
 		};
-		
+
 		var vm = this;
 		$scope.$parent.parent.setTitle("Iniciar sesión");
 		feedback_reset();
@@ -33,7 +33,8 @@ App
 					return $scope.feedback_err = api.err;
 				}
 				localStorage.setItem('user', JSON.stringify(api.user));
-				return $location.path("/");
+				$scope.$parent.parent.setName();
+				$location.path("/");
 			});
 		};
 

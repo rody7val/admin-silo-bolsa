@@ -4,7 +4,6 @@ App
 		if (!$auth.isAuthenticated()){
 			return $location.path("/login");
 		}
-
 		// Mensajes Log
 		if ($location.search().err){
 			$scope.feedback_err = $location.search().err;

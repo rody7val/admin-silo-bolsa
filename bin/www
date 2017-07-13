@@ -1,14 +1,21 @@
-require('dotenv').config();
+require('dotenv').config('../.env');
 var config = require('../config');
 var backend = require('../backend');
 var http = require('http');
+var ip = require('ip');
 
 // Crear servidor http
 var server = http.createServer(backend);
 
 server.listen(config.port, function (err){  
 	if (err) return console.log(err);
-	console.log('Servidor escuchando en el puerto ' + config.port);
-	console.log('Entorno: ' + process.env.NODE_ENV);
-	console.log('API_HOST: ' + config.API_HOST);
+	var protocol = 'http://';
+	console.log('####');
+	console.log(`Servidor local: ${protocol}localhost:${config.port}`);
+	console.log(`Servidor en tu red: ${protocol}${ip.address()}:${config.port}`);
+	console.log(`Entorno: ${process.env.NODE_ENV}`);
+	console.log(`API_HOST: ${config.API_HOST}`);
+	console.log(`TOKEN_NAME: ${config.TOKEN_NAME}`);
+	console.log(`TOKEN_PREFIX: ${config.TOKEN_PREFIX}`);
+	console.log('####');
 });

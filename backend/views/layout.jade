@@ -7,34 +7,36 @@ html(lang='es', ng-app='App')
 		title Administración socketio.js
 		block meta
 		script.
-			var API_HOST = "!{config.API_HOST}";
+			var API_HOST = '!{config.API_HOST}';
+			var TOKEN_NAME = '!{config.TOKEN_NAME}';
+			var TOKEN_PREFIX = '!{config.TOKEN_PREFIX}';
 		//- Socket.io
-		script(type="text/javascript", src='/js/lib/socket.io-client/dist/socket.io.js')
+		script(type='text/javascript', src='/js/lib/socket.io-client/dist/socket.io.js')
 		//- Bootstrap
-		script(type="text/javascript", src='/js/lib/jquery/jquery.js')
-		script(type="text/javascript", src='/js/lib/tether/tether.js')
-		script(type="text/javascript", src='/js/lib/bootstrap/bootstrap.js')
+		script(type='text/javascript', src='/js/lib/jquery/jquery.js')
+		script(type='text/javascript', src='/js/lib/tether/tether.js')
+		script(type='text/javascript', src='/js/lib/bootstrap/bootstrap.js')
 		//- Formato de Fechas
-		script(type="text/javascript", src='/js/lib/moment/moment.js')
-		script(type="text/javascript", src='/js/app/moment-with-locales.js')
+		script(type='text/javascript', src='/js/lib/moment/moment.js')
+		script(type='text/javascript', src='/js/app/moment-with-locales.js')
 		//- Angular
-		script(type="text/javascript", src='/js/lib/angular/angular.js')
-		script(type="text/javascript", src='/js/lib/angular-ui-router/angular-ui-router.js')
-		script(type="text/javascript", src='/js/lib/satellizer/satellizer.js')
-		script(type="text/javascript", src='/js/lib/angular-socket-io/socket.js')
-		script(type="text/javascript", src='/js/lib/d3/d3.js')
-		script(type="text/javascript", src='/js/lib/nvd3/nv.d3.js')
-		script(type="text/javascript", src='/js/lib/angular-nvd3/angular-nvd3.js')
-		script(type="text/javascript", src='/js/lib/angular-environment/angular-environment.js')
+		script(type='text/javascript', src='/js/lib/angular/angular.js')
+		script(type='text/javascript', src='/js/lib/angular-ui-router/angular-ui-router.js')
+		script(type='text/javascript', src='/js/lib/satellizer/satellizer.js')
+		script(type='text/javascript', src='/js/lib/angular-socket-io/socket.js')
+		script(type='text/javascript', src='/js/lib/d3/d3.js')
+		script(type='text/javascript', src='/js/lib/nvd3/nv.d3.js')
+		script(type='text/javascript', src='/js/lib/angular-nvd3/angular-nvd3.js')
+		script(type='text/javascript', src='/js/lib/angular-environment/angular-environment.js')
 		//- script(type="text/javascript", src='/js/lib/angular-imgur-upload/angular-imgur-upload.min.js')
 		block js
-		link(rel="stylesheet", type="text/css", href='/css/bootstrap.min.css')
-		link(rel="stylesheet", type="text/css", href='/js/lib/nvd3/nv.d3.css')
-		link(rel="stylesheet", type="text/css", href='/css/style.css')
+		link(rel='stylesheet', type='text/css', href='/css/bootstrap.min.css')
+		link(rel='stylesheet', type='text/css', href='/js/lib/nvd3/nv.d3.css')
+		link(rel='stylesheet', type='text/css', href='/css/style.css')
 		block css
 	body(ng-controller='Main as parent')
 		//- Menu top
-		header#menuTop.navbar.navbar-fixed-top.navbar-inverse(style="background: #4285f4;")
+		header#menuTop.navbar.navbar-fixed-top.navbar-inverse(style='background: #4285f4;')
 			nav
 				//- Left
 				.navbar-brand.left
