@@ -2,9 +2,6 @@ var routesApp = function ($authProvider, $stateProvider, $locationProvider) {
 
 	$authProvider.loginUrl = API_HOST + "/auth/login";
 	$authProvider.signupUrl = API_HOST + "/auth/signup";
-	$authProvider.tokenName = 'token';
-	$authProvider.tokenPrefix = TOKEN_PREFIX;
-	$authProvider.tokenHeader = 'Authorization';
 
 	$locationProvider.html5Mode({
 		enabled: true,

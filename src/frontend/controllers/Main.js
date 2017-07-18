@@ -1,11 +1,12 @@
 App
-	.controller('Main', function ($auth, $scope, $http, $rootScope, $urlRouter, $location, $window, User) {
+	.controller('Main', function ($auth, $scope, $http, $rootScope, $urlRouter, $location, $window, User, Socket) {
 		
 		var _self = this;
 		function feedback_reset() {
-			_self.auth = $auth.isAuthenticated();
+			_self.auth = false;
 			$scope.loading = false;
 			_self.errConect = false;
+			_self.dht22 = null;
 			_self.usersCount = 0;
 			_self.sensorCount = 0;
 			_self.sectors = [];
@@ -99,8 +100,23 @@ App
 			}
 		}
 
+		this.setDht22 = function () {
+			Socket.on('dht22', function (data) {
+				_self.dht22 = data
+			});
+		}
+
+		this.startDht22 = function () {
+			Socket.emit('start-dht22');
+		}
+
+		this.stopDht22 = function () {
+			Socket.emit('stop-dht22');
+		}
+
 		// Counts
 		this.getUserCount();
 		this.setName();
+		this.setDht22();
 
 	});

@@ -7,7 +7,8 @@ App
 		$auth
 		.logout()
 		.then(function() {
-			localStorage.removeItem('user')
+			localStorage.removeItem('user');
+			$scope.$parent.parent.stopDht22();
 			$location.path('/login');
 		});
 

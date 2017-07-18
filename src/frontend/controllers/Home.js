@@ -21,5 +21,7 @@ App
 		this.reload = function () {
 			return $window.location.reload();
 		}
+		
+		$scope.$parent.parent.startDht22();
 
 	});

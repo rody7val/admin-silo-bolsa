@@ -4,6 +4,10 @@ var backend = require('../backend');
 var http = require('http');
 var ip = require('ip');
 
+if (process.env.NODE_ENV === 'undefined') {
+	process.env.NODE_ENV = 'production';
+}
+
 // Crear servidor http
 var server = http.createServer(backend);
 
