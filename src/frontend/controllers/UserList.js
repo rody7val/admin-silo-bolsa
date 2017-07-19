@@ -2,6 +2,7 @@ App
 	.controller('UserList', function ($scope, $auth, $location, $http, User) {
 
 		if (!$auth.isAuthenticated()) {
+			$scope.$parent.parent.stopDht22();
 			return $location.path('/login');
 		}
 

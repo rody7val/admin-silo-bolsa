@@ -46,10 +46,19 @@
 		<!-- Columna 2 -->
 		<div class='col-lg-8'>
 			<div class='body-form'>
-				<h4 class='center date'>Temp. y Humedad Exterior</h4>
-				<div class='card-content' ng-show='parent.dht22'>
-					<b>T:</b> {{parent.dht22.data.temperature.toFixed(1)}}°C<br/>
-					<b>H:</b> {{parent.dht22.data.humidity.toFixed(1)}}%</p>
+				<h4 class='center date'>DHT22-EXTERIOR</h4>
+				<div class='card-content'>
+					<nvd3 options="options" data="data" class="with-3d-shadow with-transitions"></nvd3>
+					<div class='row'>
+						<div class='center col-md-6'>
+							<b>TEMP °C</b>
+							<h2 class='date' style='font-size: 30px!important'>{{parent.dht22.temp}}°C</h2>
+						</div>
+						<div class='center col-md-6'>
+							<b>HUMEDAD:</b>
+							<h2 class='date' style='font-size: 30px!important'>{{parent.dht22.hr}}%</h2>
+						</div>
+					</div>
 				</div>
 
 			</div>

@@ -6,46 +6,60 @@ App
 			_self.auth = false;
 			$scope.loading = false;
 			_self.errConect = false;
-			_self.dht22 = null;
+			_self.dht22 = {
+				temp: 0,
+				hr: 0
+			};
 			_self.usersCount = 0;
 			_self.sensorCount = 0;
 			_self.sectors = [];
 		}
+
+		feedback_reset();
+
 		$scope.reload = function () {
 			return $window.location.reload();
 		}
-        $scope.options = {
-            chart: {
-                type: 'lineChart',
-                height: 450,
-                margin : {
-                    top: 20,
-                    right: 20,
-                    bottom: 60,
-                    left: 65
-                },
-                x: function(d){ return d[0]; },
-                y: function(d){ return d[1]; },
-                useInteractiveGuideline: true,
-                color: d3.scale.category10().range(),
-                xAxis: {
-                    axisLabel: 'Hora',
-                    tickFormat: function(d) {
-                    	return moment(d).format('LTS')
-                    },
-                    rotateLabels: -45,
-                },
-                yAxis: {
-                    axisLabel: 'Luz',
-                    tickFormat: function(d) { 
-                    	return d
-                    },
-                },
-                duration: 300
-            }
-        };
 
-		feedback_reset();
+		// $scope.xmaxvalue = moment().unix();
+		// $scope.xminvalue = moment().subtract(1, "minutes").unix($scope.xmaxvalue);
+
+		$scope.yminvalue = 0;
+		$scope.ymaxvalue = 70;
+
+		$scope.options = {
+			chart: {
+				type: 'lineChart',
+				height: 300,
+				x: function(d){ return d.x; },
+				y: function(d){ return d.y; },
+				useInteractiveGuideline: true,
+				xAxis: {
+					tickFormat: function(d) { 
+						return moment.unix(d).format('h:mm:ss');
+					},
+					rotateLabels: -30,
+				},
+				yAxis: {
+					tickFormat: function(d) { 
+						return d
+					}
+				},
+				yDomain: [$scope.yminvalue, $scope.ymaxvalue],
+				// xDomain: [moment().unix(), moment().add(1, "minutes").unix()]
+				duration: 300
+			}
+		};
+
+		$scope.data = [{
+			values: [],
+			key: 'Temp °C',
+			color: '#ff7f0e'
+		}, {
+			values: [],
+			key: 'Humedad',
+			color: '#2ca02c'
+		}];
 
 		this.getUserCount = function () {
 			User
@@ -92,17 +106,19 @@ App
 			return 'undefined';
 		}
 
-		$scope.newChart = function (sector) {
-			sector.done = !sector.done;
-			if (sector.init == 1) {
-				sector.init--
-				Socket.emit('new-chart', sector);
-			}
-		}
-
 		this.setDht22 = function () {
-			Socket.on('dht22', function (data) {
-				_self.dht22 = data
+			Socket.on('dht22', function (sensor) {
+				var temp = Math.round( sensor.data.temperature * 1e1 ) / 1e1; 
+				var hr = Math.round( sensor.data.humidity * 1e1 ) / 1e1;
+
+				$scope.data[0].values = $scope.data[0].values.concat({x: sensor.time, y: temp});
+				$scope.data[1].values = $scope.data[1].values.concat({x: sensor.time, y: hr});
+				_self.dht22.temp = temp;
+				_self.dht22.hr = hr;
+
+
+				// $scope.xmaxvalue = sensor.time;
+				// $scope.xminvalue = moment().subtract(1, "minutes").unix($scope.xmaxvalue);
 			});
 		}
 
