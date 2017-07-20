@@ -23,7 +23,6 @@ App
 
 		// $scope.xmaxvalue = moment().unix();
 		// $scope.xminvalue = moment().subtract(1, "minutes").unix($scope.xmaxvalue);
-
 		$scope.yminvalue = 0;
 		$scope.ymaxvalue = 70;
 
@@ -134,5 +133,6 @@ App
 		this.getUserCount();
 		this.setName();
 		this.setDht22();
+		this.startDht22();
 
 	});

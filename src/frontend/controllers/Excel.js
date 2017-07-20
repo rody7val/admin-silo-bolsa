@@ -2,7 +2,6 @@ App
 	.controller('Excel', function ($scope, $auth, $location, $http, $window, Excel) {
 
 		if (!$auth.isAuthenticated()) {
-			$scope.$parent.parent.stopDht22();
 			return $location.path('/login');
 		}
 

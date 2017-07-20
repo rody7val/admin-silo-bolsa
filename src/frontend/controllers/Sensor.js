@@ -2,7 +2,6 @@ App
 	.controller('Sensor', function ($scope, $auth, $location) {
 
 		if (!$auth.isAuthenticated()) {
-			$scope.$parent.parent.stopDht22();
 			return $location.path('/login');
 		}
 

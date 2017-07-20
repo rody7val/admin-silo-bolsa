@@ -2,7 +2,6 @@ App
 	.controller('Home', function ($scope, $auth, $location, $window) {
 		// Filtro
 		if (!$auth.isAuthenticated()){
-			$scope.$parent.parent.stopDht22();
 			return $location.path("/login");
 		}
 		// Mensajes Log
@@ -22,7 +21,5 @@ App
 		this.reload = function () {
 			return $window.location.reload();
 		}
-
-		$scope.$parent.parent.startDht22();
 
 	});
