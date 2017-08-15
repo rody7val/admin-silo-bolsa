@@ -132,7 +132,7 @@ App
 		// Counts
 		this.getUserCount();
 		this.setName();
-		this.setDht22();
+		// this.setDht22();
 		this.startDht22();
 
 	});
