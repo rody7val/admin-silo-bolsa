@@ -105,34 +105,34 @@ App
 			return 'undefined';
 		}
 
-		this.setDht22 = function () {
-			Socket.on('dht22', function (sensor) {
-				var temp = Math.round( sensor.data.temperature * 1e1 ) / 1e1; 
-				var hr = Math.round( sensor.data.humidity * 1e1 ) / 1e1;
+		// this.setDht22 = function () {
+		// 	Socket.on('dht22', function (sensor) {
+		// 		var temp = Math.round( sensor.data.temperature * 1e1 ) / 1e1; 
+		// 		var hr = Math.round( sensor.data.humidity * 1e1 ) / 1e1;
 
-				$scope.data[0].values = $scope.data[0].values.concat({x: sensor.time, y: temp});
-				$scope.data[1].values = $scope.data[1].values.concat({x: sensor.time, y: hr});
-				_self.dht22.temp = temp;
-				_self.dht22.hr = hr;
+		// 		$scope.data[0].values = $scope.data[0].values.concat({x: sensor.time, y: temp});
+		// 		$scope.data[1].values = $scope.data[1].values.concat({x: sensor.time, y: hr});
+		// 		_self.dht22.temp = temp;
+		// 		_self.dht22.hr = hr;
 
 
-				// $scope.xmaxvalue = sensor.time;
-				// $scope.xminvalue = moment().subtract(1, "minutes").unix($scope.xmaxvalue);
-			});
-		}
+		// 		// $scope.xmaxvalue = sensor.time;
+		// 		// $scope.xminvalue = moment().subtract(1, "minutes").unix($scope.xmaxvalue);
+		// 	});
+		// }
 
-		this.startDht22 = function () {
-			Socket.emit('start-dht22');
-		}
+		// this.startDht22 = function () {
+		// 	Socket.emit('start-dht22');
+		// }
 
-		this.stopDht22 = function () {
-			Socket.emit('stop-dht22');
-		}
+		// this.stopDht22 = function () {
+		// 	Socket.emit('stop-dht22');
+		// }
 
 		// Counts
 		this.getUserCount();
 		this.setName();
 		// this.setDht22();
-		this.startDht22();
+		// this.startDht22();
 
 	});
